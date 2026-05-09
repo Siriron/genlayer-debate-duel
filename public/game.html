@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --ink: #0a0a0f;
       --paper: #f5f0e8;
@@ -18,16 +17,14 @@
       --gold-light: #e8cc7a;
       --red: #c0392b;
       --green: #27ae60;
-      --blue: #2980b9;
+      --blue: #4a9eff;
       --muted: #7a7060;
       --border: #d4cfc4;
       --dark-bg: #0d0d16;
       --dark-card: #12121e;
       --dark-border: #1e1e30;
     }
-
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--dark-bg);
       color: var(--paper);
@@ -49,97 +46,34 @@
       top: 0;
       z-index: 100;
     }
-
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--paper);
-      text-decoration: none;
-    }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--paper); text-decoration: none; }
     .logo span { color: var(--gold); }
-
-    .header-status {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .status-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--green);
-      animation: blink 2s ease-in-out infinite;
-    }
-
-    .status-text {
+    .header-right { display: flex; align-items: center; gap: 1.5rem; }
+    .wallet-badge {
       font-family: 'DM Mono', monospace;
       font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
       color: var(--muted);
+      padding: 0.4rem 0.9rem;
     }
-
-    .back-link {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    .back-link { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .back-link:hover { color: var(--gold); }
 
     /* ── LAYOUT ── */
-    .game-container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 3rem 2rem;
-    }
+    .game-container { max-width: 860px; margin: 0 auto; padding: 3rem 2rem; }
 
     /* ── SCREEN SYSTEM ── */
     .screen { display: none; }
     .screen.active { display: block; }
 
-    /* ── SETUP SCREEN ── */
-    .screen-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
+    /* ── COMMON ── */
+    .screen-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .screen-sub { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: #6a6478; margin-bottom: 3rem; }
 
-    .screen-sub {
-      font-size: 1rem;
-      color: #6a6478;
-      margin-bottom: 3rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-    }
-
-    .setup-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
+    .field { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
+    label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
     input[type="text"], textarea {
       background: var(--dark-card);
       border: 1px solid var(--dark-border);
@@ -155,74 +89,58 @@
     input:focus, textarea:focus { border-color: var(--gold); }
     input::placeholder, textarea::placeholder { color: #3a3a4a; }
 
-    .btn {
-      display: inline-block;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.9rem 2.2rem;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
+    .setup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 
-    .btn-gold {
-      background: var(--gold);
-      color: var(--ink);
-    }
+    .btn { display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.9rem 2.2rem; border: none; cursor: pointer; transition: all 0.2s; }
+    .btn-gold { background: var(--gold); color: var(--ink); }
     .btn-gold:hover { background: var(--gold-light); }
     .btn-gold:disabled { background: #3a3a4a; color: #6a6a7a; cursor: not-allowed; }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--muted);
-      border: 1px solid var(--dark-border);
-    }
+    .btn-outline { background: transparent; color: var(--muted); border: 1px solid var(--dark-border); }
     .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-
-    .btn-danger {
-      background: transparent;
-      color: var(--red);
-      border: 1px solid var(--red);
-    }
-    .btn-danger:hover { background: var(--red); color: white; }
 
     /* ── CONTRACT INFO ── */
     .contract-info {
       background: var(--dark-card);
       border: 1px solid var(--dark-border);
-      padding: 1.5rem;
+      padding: 1.25rem 1.5rem;
       margin-bottom: 2rem;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
     }
+    .ci-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: #4a4a5a; margin-bottom: 0.3rem; }
+    .ci-val { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--gold); word-break: break-all; }
 
-    .contract-item-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #4a4a5a;
-      margin-bottom: 0.3rem;
+    /* ── WALLET SECTION ── */
+    #walletSection {
+      text-align: center;
+      padding: 4rem 2rem;
+      border: 1px solid var(--dark-border);
+      background: var(--dark-card);
+      margin-bottom: 2rem;
     }
+    .wallet-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-style: italic; margin-bottom: 0.75rem; }
+    .wallet-sub { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2rem; }
 
-    .contract-item-val {
+    /* ── STATUS ── */
+    #status {
       font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      color: var(--gold);
-      word-break: break-all;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-top: 1rem;
+      min-height: 1.2rem;
     }
+    #status.loading { animation: pulse 1.2s ease-in-out infinite; color: var(--gold); }
+    #status.error { color: var(--red); }
 
-    /* ── MATCH SCREEN ── */
+    /* ── MATCH HEADER ── */
     .match-header {
       text-align: center;
       margin-bottom: 2.5rem;
       padding-bottom: 2rem;
       border-bottom: 1px solid var(--dark-border);
     }
-
     .round-badge {
       display: inline-block;
       font-family: 'DM Mono', monospace;
@@ -234,53 +152,20 @@
       padding: 0.3rem 1rem;
       margin-bottom: 1.2rem;
     }
-
     .topic-display {
       font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 700;
       font-style: italic;
       line-height: 1.3;
       max-width: 700px;
       margin: 0 auto 1.5rem;
-      color: var(--paper);
     }
-
-    .scoreboard {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .score-player {
-      text-align: center;
-    }
-
-    .score-name {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.3rem;
-    }
-
-    .score-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      font-weight: 900;
-      line-height: 1;
-      color: var(--paper);
-    }
-
-    .score-divider {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--dark-border);
-      letter-spacing: 0.1em;
-    }
+    .scoreboard { display: flex; align-items: center; justify-content: center; gap: 2rem; }
+    .score-player { text-align: center; }
+    .score-pname { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+    .score-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; line-height: 1; }
+    .score-divider { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--dark-border); }
 
     /* ── ARGUMENT AREA ── */
     .argument-phase {
@@ -288,803 +173,480 @@
       border: 1px solid var(--dark-border);
       padding: 2rem;
       margin-bottom: 1.5rem;
-      position: relative;
     }
-
     .argument-phase.player-a { border-left: 3px solid var(--gold); }
-    .argument-phase.player-b { border-left: 3px solid #4a9eff; }
-
-    .phase-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-    }
-
-    .phase-player {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .phase-avatar {
-      width: 36px; height: 36px;
-      border: 1px solid var(--dark-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-    }
-
-    .phase-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 700;
-    }
-
-    .phase-side {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    .phase-timer {
-      font-family: 'DM Mono', monospace;
-      font-size: 1.4rem;
-      font-weight: 500;
-      color: var(--paper);
-      letter-spacing: 0.05em;
-    }
-
+    .argument-phase.player-b { border-left: 3px solid var(--blue); }
+    .phase-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+    .phase-player { display: flex; align-items: center; gap: 0.75rem; }
+    .phase-avatar { width: 36px; height: 36px; border: 1px solid var(--dark-border); display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+    .phase-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; }
+    .phase-side { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+    .phase-timer { font-family: 'DM Mono', monospace; font-size: 1.4rem; font-weight: 500; }
     .phase-timer.urgent { color: var(--red); animation: blink 0.5s linear infinite; }
-
-    .position-box {
-      background: rgba(201, 168, 76, 0.06);
-      border: 1px solid rgba(201, 168, 76, 0.15);
-      padding: 0.75rem 1rem;
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-      color: #a09070;
-      font-style: italic;
-    }
-
-    textarea.arg-input {
-      min-height: 120px;
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    .char-count {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      color: #4a4a5a;
-      text-align: right;
-      margin-top: 0.4rem;
-    }
-
-    .submit-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 1rem;
-    }
-
-    .submit-hint {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      color: #4a4a5a;
-      letter-spacing: 0.08em;
-    }
+    .position-box { background: rgba(201,168,76,0.06); border: 1px solid rgba(201,168,76,0.15); padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.9rem; color: #a09070; font-style: italic; }
+    textarea.arg-input { min-height: 120px; font-size: 1rem; line-height: 1.6; }
+    .char-count { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: #4a4a5a; text-align: right; margin-top: 0.4rem; }
+    .submit-row { display: flex; align-items: center; justify-content: space-between; margin-top: 1rem; }
+    .submit-hint { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: #4a4a5a; }
 
     /* ── JUDGING ── */
-    .judging-overlay {
-      text-align: center;
-      padding: 4rem 2rem;
-    }
-
-    .judging-spinner {
-      width: 60px; height: 60px;
-      border: 2px solid var(--dark-border);
-      border-top-color: var(--gold);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 2rem;
-    }
-
-    .judging-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      font-style: italic;
-      margin-bottom: 0.75rem;
-    }
-
-    .judging-sub {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      color: var(--muted);
-    }
+    .judging-overlay { text-align: center; padding: 5rem 2rem; }
+    .judging-spinner { width: 60px; height: 60px; border: 2px solid var(--dark-border); border-top-color: var(--gold); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 2rem; }
+    .judging-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-style: italic; margin-bottom: 0.75rem; }
+    .judging-sub { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--muted); }
 
     /* ── VERDICT ── */
-    .verdict-card {
-      background: var(--dark-card);
-      border: 1px solid var(--dark-border);
-      padding: 2.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .verdict-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--dark-border);
-    }
-
-    .verdict-winner-badge {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 0.4rem 1.2rem;
-    }
+    .verdict-card { background: var(--dark-card); border: 1px solid var(--dark-border); padding: 2.5rem; margin-bottom: 1.5rem; }
+    .verdict-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--dark-border); }
+    .verdict-winner-badge { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.4rem 1.2rem; }
     .verdict-winner-badge.win-a { background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid var(--gold); }
-    .verdict-winner-badge.win-b { background: rgba(74,158,255,0.15); color: #4a9eff; border: 1px solid #4a9eff; }
+    .verdict-winner-badge.win-b { background: rgba(74,158,255,0.15); color: var(--blue); border: 1px solid var(--blue); }
     .verdict-winner-badge.draw { background: rgba(122,112,96,0.15); color: var(--muted); border: 1px solid var(--muted); }
 
-    .verdict-scores {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 1.5rem;
-      align-items: start;
-      margin-bottom: 2rem;
-    }
-
-    .player-verdict {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .player-verdict-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-    }
-
-    .score-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .score-label-sm {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      min-width: 80px;
-    }
-
-    .score-bar-wrap {
-      flex: 1;
-      height: 4px;
-      background: var(--dark-border);
-      position: relative;
-    }
-
-    .score-bar-fill {
-      height: 100%;
-      background: var(--gold);
-      transition: width 1s ease;
-    }
-
-    .score-val {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--paper);
-      min-width: 20px;
-      text-align: right;
-    }
-
-    .total-score {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 900;
-      text-align: center;
-      line-height: 1;
-      margin-top: 0.5rem;
-    }
-    .total-score small {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      color: var(--muted);
-      display: block;
-      font-weight: 400;
-      margin-top: 0.3rem;
-    }
-
-    .verdict-vs {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: var(--dark-border);
-      padding-top: 2rem;
-    }
-
-    .judgment-text {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--dark-border);
-      padding: 1.25rem 1.5rem;
-      font-style: italic;
-      font-size: 1rem;
-      color: #a09080;
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-    }
-
-    .verdict-actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-    }
+    .verdict-scores { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1.5rem; align-items: start; margin-bottom: 2rem; }
+    .player-verdict { display: flex; flex-direction: column; gap: 0.8rem; }
+    .player-verdict-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .score-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .score-label-sm { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); min-width: 80px; }
+    .score-bar-wrap { flex: 1; height: 4px; background: var(--dark-border); }
+    .score-bar-fill { height: 100%; background: var(--gold); transition: width 1s ease; }
+    .score-val { font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 500; min-width: 20px; text-align: right; }
+    .total-score { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; text-align: center; line-height: 1; margin-top: 0.5rem; }
+    .total-score small { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--muted); display: block; font-weight: 400; margin-top: 0.3rem; }
+    .verdict-vs { display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--dark-border); padding-top: 2rem; }
+    .judgment-text { background: rgba(255,255,255,0.02); border: 1px solid var(--dark-border); padding: 1.25rem 1.5rem; font-style: italic; font-size: 1rem; color: #a09080; line-height: 1.7; margin-bottom: 1.5rem; }
+    .verdict-actions { display: flex; gap: 1rem; justify-content: center; }
 
     /* ── MATCH OVER ── */
-    .match-over {
-      text-align: center;
-      padding: 3rem 2rem;
-    }
-
-    .winner-trophy {
-      font-size: 4rem;
-      margin-bottom: 1.5rem;
-      animation: bounce 1s ease-in-out;
-    }
-
-    .winner-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 900;
-      margin-bottom: 0.5rem;
-    }
-
-    .winner-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-style: italic;
-      color: var(--gold);
-      margin-bottom: 0.5rem;
-    }
-
-    .match-over-scores {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      margin: 2rem 0;
-      padding: 2rem;
-      background: var(--dark-card);
-      border: 1px solid var(--dark-border);
-    }
-
+    .match-over { text-align: center; padding: 3rem 2rem; }
+    .winner-trophy { font-size: 4rem; margin-bottom: 1.5rem; animation: bounce 1s ease-in-out; }
+    .winner-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem; }
+    .winner-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic; color: var(--gold); margin-bottom: 0.5rem; }
+    .match-over-scores { display: flex; align-items: center; justify-content: center; gap: 2rem; margin: 2rem 0; padding: 2rem; background: var(--dark-card); border: 1px solid var(--dark-border); }
     .over-score-player { text-align: center; }
-    .over-score-name {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.3rem;
-    }
-    .over-score-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 4rem;
-      font-weight: 900;
-      line-height: 1;
-    }
+    .over-score-name { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+    .over-score-num { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 900; line-height: 1; }
     .over-score-num.winner-highlight { color: var(--gold); }
 
-    /* ── LOG ── */
-    .tx-log {
-      margin-top: 3rem;
-      border-top: 1px solid var(--dark-border);
-      padding-top: 1.5rem;
-    }
-
-    .tx-log-title {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    .tx-entry {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      color: #4a6a4a;
-      margin-bottom: 0.4rem;
-      padding: 0.4rem 0.75rem;
-      background: rgba(39, 174, 96, 0.04);
-      border-left: 2px solid #27ae60;
-    }
-
+    /* ── TX LOG ── */
+    .tx-log { margin-top: 2rem; border-top: 1px solid var(--dark-border); padding-top: 1.5rem; }
+    .tx-log-title { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+    .tx-entry { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: #4a6a4a; margin-bottom: 0.4rem; padding: 0.4rem 0.75rem; background: rgba(39,174,96,0.04); border-left: 2px solid #27ae60; }
     .tx-entry.error { color: #8a4a4a; background: rgba(192,57,43,0.04); border-left-color: var(--red); }
 
-    /* ── LOADING STATE ── */
-    .loading-bar {
-      height: 2px;
-      background: var(--gold);
-      width: 0;
-      animation: loadBar 2s ease-in-out infinite;
-      margin-bottom: 2rem;
-    }
-
-    /* ── WAITING SCREEN ── */
-    .waiting-screen {
-      text-align: center;
-      padding: 3rem;
-      background: var(--dark-card);
-      border: 1px solid var(--dark-border);
-    }
-
-    .waiting-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-style: italic;
-      margin-bottom: 0.5rem;
-    }
-
-    .waiting-sub {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-    }
+    /* ── WAITING ── */
+    .waiting-screen { text-align: center; padding: 3rem; background: var(--dark-card); border: 1px solid var(--dark-border); }
+    .waiting-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic; margin-bottom: 0.5rem; }
+    .waiting-sub { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; }
 
     /* ── LEADERBOARD ── */
-    .leaderboard {
-      margin-top: 2rem;
-    }
-
-    .lb-row {
-      display: grid;
-      grid-template-columns: 2rem 1fr repeat(4, 5rem);
-      gap: 1rem;
-      align-items: center;
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid var(--dark-border);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-    }
-
+    .lb-row { display: grid; grid-template-columns: 2rem 1fr repeat(3, 5rem); gap: 1rem; align-items: center; padding: 0.75rem 1rem; border-bottom: 1px solid var(--dark-border); font-family: 'DM Mono', monospace; font-size: 0.65rem; }
     .lb-row.header { color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
-    .lb-row:not(.header):hover { background: rgba(255,255,255,0.02); }
-
-    .lb-rank { color: var(--gold); font-weight: 500; }
+    .lb-rank { color: var(--gold); }
     .lb-name { color: var(--paper); }
     .lb-val { text-align: right; color: #7a7a8a; }
     .lb-val.wins { color: var(--green); }
 
     /* ── TOAST ── */
-    .toast {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: var(--dark-card);
-      border: 1px solid var(--gold);
-      color: var(--paper);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      padding: 1rem 1.5rem;
-      z-index: 999;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.3s;
-      max-width: 320px;
-    }
+    .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--dark-card); border: 1px solid var(--gold); color: var(--paper); font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; padding: 1rem 1.5rem; z-index: 999; opacity: 0; transform: translateY(10px); transition: all 0.3s; max-width: 320px; }
     .toast.show { opacity: 1; transform: translateY(0); }
     .toast.error { border-color: var(--red); }
 
     /* ── ANIMATIONS ── */
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-16px); }
-    }
-    @keyframes loadBar {
-      0% { width: 0; opacity: 1; }
-      80% { width: 100%; opacity: 1; }
-      100% { width: 100%; opacity: 0; }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
     .animate-in { animation: fadeIn 0.4s ease forwards; }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 700px) {
       .setup-grid { grid-template-columns: 1fr; }
       .contract-info { grid-template-columns: 1fr; }
       .verdict-scores { grid-template-columns: 1fr; }
       .verdict-vs { display: none; }
-      .lb-row { grid-template-columns: 2rem 1fr 4rem 4rem; }
-      .lb-row .lb-val:nth-child(5), .lb-row .lb-val:nth-child(6) { display: none; }
+      .game-header { padding: 1rem 1.2rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="game-header">
-    <a href="index.html" class="logo">Debate<span>Duel</span></a>
-    <div class="header-status">
-      <div class="status-dot"></div>
-      <span class="status-text" id="networkStatus">GenLayer Testnet</span>
+<header class="game-header">
+  <a href="/" class="logo">Debate<span>Duel</span></a>
+  <div class="header-right">
+    <div class="wallet-badge" id="walletBadge">Not connected</div>
+    <a href="/" class="back-link">← Back</a>
+  </div>
+</header>
+
+<div class="game-container">
+
+  <!-- CONTRACT INFO -->
+  <div class="contract-info">
+    <div>
+      <div class="ci-label">Game Contract</div>
+      <div class="ci-val">0xce04C5f27Cb1DBfF46044f8Fd871A9F9e5418e4d</div>
     </div>
-    <a href="index.html" class="back-link">← Back</a>
-  </header>
-
-  <div class="game-container">
-
-    <!-- CONTRACT INFO BAR -->
-    <div class="contract-info">
-      <div>
-        <div class="contract-item-label">Game Contract</div>
-        <div class="contract-item-val" id="contractAddr">0xce04C5f27Cb1DBfF46044f8Fd871A9F9e5418e4d</div>
-      </div>
-      <div>
-        <div class="contract-item-label">Storage Contract</div>
-        <div class="contract-item-val" id="storageAddr">0xebe33979c7ac0C5131f6F9f1E15540B009ECb01F</div>
-      </div>
-      <div>
-        <div class="contract-item-label">Stat Contract</div>
-        <div class="contract-item-val" id="statAddr">0xfc9A7445868B0Af0a80f80C352C0EbAf77193fAF</div>
-      </div>
+    <div>
+      <div class="ci-label">Storage Contract</div>
+      <div class="ci-val">0xebe33979c7ac0C5131f6F9f1E15540B009ECb01F</div>
     </div>
+    <div>
+      <div class="ci-label">Stat Contract</div>
+      <div class="ci-val">0xfc9A7445868B0Af0a80f80C352C0EbAf77193fAF</div>
+    </div>
+  </div>
 
-    <!-- ── SCREEN: SETUP ── -->
-    <div id="screenSetup" class="screen active animate-in">
-      <div class="screen-title">Enter the Arena</div>
-      <div class="screen-sub">// Two players. One topic. AI judge on-chain.</div>
+  <!-- SCREEN: WALLET -->
+  <div id="screenWallet" class="screen active animate-in">
+    <div id="walletSection">
+      <div class="wallet-title">Connect to Enter the Arena</div>
+      <div class="wallet-sub">// MetaMask required · GenLayer Testnet</div>
+      <button class="btn btn-gold" id="connectBtn">Connect Wallet →</button>
+      <div id="status"></div>
+    </div>
+  </div>
 
-      <div class="setup-grid">
-        <div class="field">
-          <label>Player A Name</label>
-          <input type="text" id="playerAName" placeholder="e.g. Atlas" maxlength="30" />
-        </div>
-        <div class="field">
-          <label>Player B Name</label>
-          <input type="text" id="playerBName" placeholder="e.g. Nova" maxlength="30" />
-        </div>
+  <!-- SCREEN: SETUP -->
+  <div id="screenSetup" class="screen animate-in">
+    <div class="screen-title">Enter the Arena</div>
+    <div class="screen-sub">// Two players. One topic. AI judge on-chain.</div>
+
+    <div class="setup-grid" style="margin-bottom:1.5rem;">
+      <div class="field">
+        <label>Player A Name</label>
+        <input type="text" id="playerAName" placeholder="e.g. Atlas" maxlength="30" />
       </div>
-
-      <div style="margin-bottom: 2.5rem;">
-        <div class="field">
-          <label>RPC Endpoint</label>
-          <input type="text" id="rpcUrl" value="https://studio.genlayer.com/api" />
-        </div>
-      </div>
-
-      <div style="display: flex; gap: 1rem; margin-bottom: 3rem;">
-        <button class="btn btn-gold" id="btnStartMatch">Generate Topic & Start Match →</button>
-        <button class="btn btn-outline" id="btnLeaderboard">View Leaderboard</button>
-      </div>
-
-      <!-- LEADERBOARD -->
-      <div id="leaderboardSection" style="display:none;">
-        <div style="font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;">
-          Leaderboard
-        </div>
-        <div class="leaderboard">
-          <div class="lb-row header">
-            <span>#</span>
-            <span>Player</span>
-            <span class="lb-val">Wins</span>
-            <span class="lb-val">Played</span>
-            <span class="lb-val">Win%</span>
-            <span class="lb-val">Streak</span>
-          </div>
-          <div id="leaderboardRows"></div>
-        </div>
-      </div>
-
-      <div id="txLog" class="tx-log" style="display:none;">
-        <div class="tx-log-title">Transaction Log</div>
-        <div id="txEntries"></div>
+      <div class="field">
+        <label>Player B Name</label>
+        <input type="text" id="playerBName" placeholder="e.g. Nova" maxlength="30" />
       </div>
     </div>
 
-    <!-- ── SCREEN: CREATING ── -->
-    <div id="screenCreating" class="screen">
-      <div class="judging-overlay">
-        <div class="judging-spinner"></div>
-        <div class="loading-bar"></div>
-        <div class="judging-title">Generating Topic…</div>
-        <div class="judging-sub">// LLM is selecting a debate topic on-chain</div>
+    <div class="field" style="margin-bottom:2rem;">
+      <label>Your Nickname (for leaderboard)</label>
+      <input type="text" id="nicknameInput" placeholder="Optional" maxlength="25" />
+    </div>
+
+    <div style="display:flex;gap:1rem;margin-bottom:1rem;">
+      <button class="btn btn-gold" id="btnStartMatch">Generate Topic & Start →</button>
+      <button class="btn btn-outline" id="btnLeaderboard">Leaderboard</button>
+    </div>
+
+    <div id="status"></div>
+
+    <!-- LEADERBOARD -->
+    <div id="leaderboardSection" style="display:none;margin-top:2rem;">
+      <div class="tx-log-title">Leaderboard</div>
+      <div class="lb-row header">
+        <span>#</span><span>Player</span>
+        <span class="lb-val">Wins</span>
+        <span class="lb-val">Played</span>
+        <span class="lb-val wins">Win%</span>
+      </div>
+      <div id="leaderboardRows"></div>
+    </div>
+
+    <div id="txLog" class="tx-log" style="display:none;">
+      <div class="tx-log-title">Transaction Log</div>
+      <div id="txEntries"></div>
+    </div>
+  </div>
+
+  <!-- SCREEN: CREATING -->
+  <div id="screenCreating" class="screen">
+    <div class="judging-overlay">
+      <div class="judging-spinner"></div>
+      <div class="judging-title">Generating Topic…</div>
+      <div class="judging-sub">// LLM selecting a debate topic on-chain · Please wait</div>
+    </div>
+  </div>
+
+  <!-- SCREEN: MATCH -->
+  <div id="screenMatch" class="screen animate-in">
+    <div class="match-header">
+      <div class="round-badge" id="roundBadge">Round 1 of 3</div>
+      <div class="topic-display" id="topicDisplay"></div>
+      <div class="scoreboard">
+        <div class="score-player">
+          <div class="score-pname" id="scoreNameA">Player A</div>
+          <div class="score-num" id="scoreNumA">0</div>
+        </div>
+        <div class="score-divider">—</div>
+        <div class="score-player">
+          <div class="score-pname" id="scoreNameB">Player B</div>
+          <div class="score-num" id="scoreNumB">0</div>
+        </div>
       </div>
     </div>
 
-    <!-- ── SCREEN: MATCH ── -->
-    <div id="screenMatch" class="screen animate-in">
-      <div class="match-header">
-        <div class="round-badge" id="roundBadge">Round 1 of 3</div>
-        <div class="topic-display" id="topicDisplay"></div>
-        <div class="scoreboard">
-          <div class="score-player">
-            <div class="score-name" id="scoreNameA">Player A</div>
-            <div class="score-num" id="scoreNumA">0</div>
-          </div>
-          <div class="score-divider">—</div>
-          <div class="score-player">
-            <div class="score-name" id="scoreNameB">Player B</div>
-            <div class="score-num" id="scoreNumB">0</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PLAYER A ARGUMENT -->
-      <div class="argument-phase player-a" id="phaseA">
-        <div class="phase-header">
-          <div class="phase-player">
-            <div class="phase-avatar">🎙</div>
-            <div>
-              <div class="phase-name" id="phaseAName">Player A</div>
-              <div class="phase-side" id="phaseASide">FOR the proposition</div>
-            </div>
-          </div>
-          <div class="phase-timer" id="timerA">60</div>
-        </div>
-        <div class="position-box" id="positionA"></div>
-        <textarea class="arg-input" id="argA" placeholder="Write your argument here. Be specific, use examples, and make your case clearly…" maxlength="800" rows="5"></textarea>
-        <div class="char-count"><span id="charA">0</span> / 800</div>
-        <div class="submit-row">
-          <span class="submit-hint">// Player B cannot see this until both submit</span>
-          <button class="btn btn-gold" id="btnSubmitA">Lock Argument →</button>
-        </div>
-      </div>
-
-      <!-- PLAYER B ARGUMENT -->
-      <div class="argument-phase player-b" id="phaseB" style="display:none;">
-        <div class="phase-header">
-          <div class="phase-player">
-            <div class="phase-avatar">🎤</div>
-            <div>
-              <div class="phase-name" id="phaseBName">Player B</div>
-              <div class="phase-side" id="phaseBSide">AGAINST the proposition</div>
-            </div>
-          </div>
-          <div class="phase-timer" id="timerB">60</div>
-        </div>
-        <div class="position-box" id="positionB"></div>
-        <textarea class="arg-input" id="argB" placeholder="Write your counter-argument. Challenge their premise and build your case…" maxlength="800" rows="5"></textarea>
-        <div class="char-count"><span id="charB">0</span> / 800</div>
-        <div class="submit-row">
-          <span class="submit-hint">// Arguments are sealed — AI judge will now evaluate</span>
-          <button class="btn btn-gold" id="btnSubmitB">Submit to AI Judge →</button>
-        </div>
-      </div>
-
-      <!-- WAITING FOR B -->
-      <div id="waitingB" style="display:none;" class="waiting-screen">
-        <div class="waiting-title">Argument A locked.</div>
-        <div class="waiting-sub">// Pass the device to Player B</div>
-      </div>
-    </div>
-
-    <!-- ── SCREEN: JUDGING ── -->
-    <div id="screenJudging" class="screen">
-      <div class="judging-overlay">
-        <div class="judging-spinner"></div>
-        <div class="loading-bar"></div>
-        <div class="judging-title">The AI Judge is Reading…</div>
-        <div class="judging-sub">// Evaluating Logic · Evidence · Persuasion on-chain</div>
-      </div>
-    </div>
-
-    <!-- ── SCREEN: VERDICT ── -->
-    <div id="screenVerdict" class="screen animate-in">
-      <div style="margin-bottom: 2rem;">
-        <div class="round-badge" id="verdictRoundBadge">Round 1 Result</div>
-      </div>
-
-      <div class="verdict-card">
-        <div class="verdict-header">
+    <!-- PLAYER A -->
+    <div class="argument-phase player-a" id="phaseA">
+      <div class="phase-header">
+        <div class="phase-player">
+          <div class="phase-avatar">🎙</div>
           <div>
-            <div style="font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700;">The Verdict</div>
-            <div style="font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--muted); letter-spacing: 0.1em; margin-top: 0.25rem;" id="verdictTopic"></div>
-          </div>
-          <div class="verdict-winner-badge" id="verdictWinnerBadge">—</div>
-        </div>
-
-        <div class="verdict-scores">
-          <div class="player-verdict">
-            <div class="player-verdict-name" id="verdictNameA">Player A</div>
-            <div class="score-row">
-              <span class="score-label-sm">Logic</span>
-              <div class="score-bar-wrap"><div class="score-bar-fill" id="barLogicA" style="width:0%"></div></div>
-              <span class="score-val" id="valLogicA">—</span>
-            </div>
-            <div class="score-row">
-              <span class="score-label-sm">Evidence</span>
-              <div class="score-bar-wrap"><div class="score-bar-fill" id="barEvidA" style="width:0%"></div></div>
-              <span class="score-val" id="valEvidA">—</span>
-            </div>
-            <div class="score-row">
-              <span class="score-label-sm">Persuasion</span>
-              <div class="score-bar-wrap"><div class="score-bar-fill" id="barPersA" style="width:0%"></div></div>
-              <span class="score-val" id="valPersA">—</span>
-            </div>
-            <div class="total-score" id="totalA">—<small>total</small></div>
-          </div>
-
-          <div class="verdict-vs">VS</div>
-
-          <div class="player-verdict">
-            <div class="player-verdict-name" id="verdictNameB">Player B</div>
-            <div class="score-row">
-              <span class="score-label-sm">Logic</span>
-              <div class="score-bar-wrap"><div class="score-bar-fill" id="barLogicB" style="width:0%; background: #4a9eff;"></div></div>
-              <span class="score-val" id="valLogicB">—</span>
-            </div>
-            <div class="score-row">
-              <span class="score-label-sm">Evidence</span>
-              <div class="score-bar-wrap"><div class="score-bar-fill" id="barEvidB" style="width:0%; background: #4a9eff;"></div></div>
-              <span class="score-val" id="valEvidB">—</span>
-            </div>
-            <div class="score-row">
-              <span class="score-label-sm">Persuasion</span>
-              <div class="score-bar-wrap"><div class="score-bar-fill" id="barPersB" style="width:0%; background: #4a9eff;"></div></div>
-              <span class="score-val" id="valPersB">—</span>
-            </div>
-            <div class="total-score" id="totalB">—<small>total</small></div>
+            <div class="phase-name" id="phaseAName">Player A</div>
+            <div class="phase-side">FOR the proposition</div>
           </div>
         </div>
-
-        <div class="judgment-text" id="judgmentText"></div>
-
-        <div class="verdict-actions">
-          <button class="btn btn-gold" id="btnNextRound">Next Round →</button>
-          <button class="btn btn-outline" id="btnEndMatch">End Match</button>
-        </div>
+        <div class="phase-timer" id="timerA">90</div>
       </div>
-
-      <div id="txLogVerdict" class="tx-log">
-        <div class="tx-log-title">On-Chain Activity</div>
-        <div id="txEntriesVerdict"></div>
+      <div class="position-box" id="positionA"></div>
+      <textarea class="arg-input" id="argA" placeholder="Write your argument here. Be specific, use examples, and make your case clearly…" maxlength="800" rows="5"></textarea>
+      <div class="char-count"><span id="charA">0</span> / 800</div>
+      <div class="submit-row">
+        <span class="submit-hint">// Player B cannot see this until both submit</span>
+        <button class="btn btn-gold" id="btnSubmitA">Lock Argument →</button>
       </div>
     </div>
 
-    <!-- ── SCREEN: MATCH OVER ── -->
-    <div id="screenOver" class="screen animate-in">
-      <div class="match-over">
-        <div class="winner-trophy" id="overTrophy">🏆</div>
-        <div class="winner-title" id="overTitle">Match Complete</div>
-        <div class="winner-name" id="overWinner">—</div>
-        <div class="match-over-scores">
-          <div class="over-score-player">
-            <div class="over-score-name" id="overNameA">Player A</div>
-            <div class="over-score-num" id="overScoreA">0</div>
-          </div>
-          <div style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--dark-border);">—</div>
-          <div class="over-score-player">
-            <div class="over-score-name" id="overNameB">Player B</div>
-            <div class="over-score-num" id="overScoreB">0</div>
-          </div>
-        </div>
-        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
-          <button class="btn btn-gold" id="btnNewMatch">New Match →</button>
-          <a href="index.html" class="btn btn-outline">← Home</a>
-        </div>
-      </div>
+    <!-- WAITING -->
+    <div id="waitingB" style="display:none;" class="waiting-screen">
+      <div class="waiting-title">Argument A locked.</div>
+      <div class="waiting-sub">// Pass the device to Player B</div>
     </div>
 
-  </div><!-- /game-container -->
+    <!-- PLAYER B -->
+    <div class="argument-phase player-b" id="phaseB" style="display:none;">
+      <div class="phase-header">
+        <div class="phase-player">
+          <div class="phase-avatar">🎤</div>
+          <div>
+            <div class="phase-name" id="phaseBName">Player B</div>
+            <div class="phase-side" style="color:var(--blue);">AGAINST the proposition</div>
+          </div>
+        </div>
+        <div class="phase-timer" id="timerB">90</div>
+      </div>
+      <div class="position-box" id="positionB" style="border-color:rgba(74,158,255,0.15);background:rgba(74,158,255,0.04);"></div>
+      <textarea class="arg-input" id="argB" placeholder="Write your counter-argument. Challenge their premise and build your case…" maxlength="800" rows="5"></textarea>
+      <div class="char-count"><span id="charB">0</span> / 800</div>
+      <div class="submit-row">
+        <span class="submit-hint">// Arguments sealed — AI judge will evaluate</span>
+        <button class="btn btn-gold" id="btnSubmitB">Submit to AI Judge →</button>
+      </div>
+    </div>
+  </div>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast"></div>
+  <!-- SCREEN: JUDGING -->
+  <div id="screenJudging" class="screen">
+    <div class="judging-overlay">
+      <div class="judging-spinner"></div>
+      <div class="judging-title">The AI Judge is Reading…</div>
+      <div class="judging-sub">// Evaluating Logic · Evidence · Persuasion on-chain</div>
+    </div>
+  </div>
 
-<script>
-// ── CONFIG ──
-const CONTRACTS = {
-  game:    '0xce04C5f27Cb1DBfF46044f8Fd871A9F9e5418e4d',
-  storage: '0xebe33979c7ac0C5131f6F9f1E15540B009ECb01F',
-  stat:    '0xfc9A7445868B0Af0a80f80C352C0EbAf77193fAF',
+  <!-- SCREEN: VERDICT -->
+  <div id="screenVerdict" class="screen animate-in">
+    <div style="margin-bottom:2rem;">
+      <div class="round-badge" id="verdictRoundBadge">Round 1 Result</div>
+    </div>
+    <div class="verdict-card">
+      <div class="verdict-header">
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;">The Verdict</div>
+          <div style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.1em;margin-top:0.25rem;" id="verdictTopic"></div>
+        </div>
+        <div class="verdict-winner-badge" id="verdictWinnerBadge">—</div>
+      </div>
+      <div class="verdict-scores">
+        <div class="player-verdict">
+          <div class="player-verdict-name" id="verdictNameA">Player A</div>
+          <div class="score-row">
+            <span class="score-label-sm">Logic</span>
+            <div class="score-bar-wrap"><div class="score-bar-fill" id="barLogicA" style="width:0%"></div></div>
+            <span class="score-val" id="valLogicA">—</span>
+          </div>
+          <div class="score-row">
+            <span class="score-label-sm">Evidence</span>
+            <div class="score-bar-wrap"><div class="score-bar-fill" id="barEvidA" style="width:0%"></div></div>
+            <span class="score-val" id="valEvidA">—</span>
+          </div>
+          <div class="score-row">
+            <span class="score-label-sm">Persuasion</span>
+            <div class="score-bar-wrap"><div class="score-bar-fill" id="barPersA" style="width:0%"></div></div>
+            <span class="score-val" id="valPersA">—</span>
+          </div>
+          <div class="total-score" id="totalA">—<small>total</small></div>
+        </div>
+        <div class="verdict-vs">VS</div>
+        <div class="player-verdict">
+          <div class="player-verdict-name" id="verdictNameB">Player B</div>
+          <div class="score-row">
+            <span class="score-label-sm">Logic</span>
+            <div class="score-bar-wrap"><div class="score-bar-fill" id="barLogicB" style="width:0%;background:var(--blue)"></div></div>
+            <span class="score-val" id="valLogicB">—</span>
+          </div>
+          <div class="score-row">
+            <span class="score-label-sm">Evidence</span>
+            <div class="score-bar-wrap"><div class="score-bar-fill" id="barEvidB" style="width:0%;background:var(--blue)"></div></div>
+            <span class="score-val" id="valEvidB">—</span>
+          </div>
+          <div class="score-row">
+            <span class="score-label-sm">Persuasion</span>
+            <div class="score-bar-wrap"><div class="score-bar-fill" id="barPersB" style="width:0%;background:var(--blue)"></div></div>
+            <span class="score-val" id="valPersB">—</span>
+          </div>
+          <div class="total-score" id="totalB">—<small>total</small></div>
+        </div>
+      </div>
+      <div class="judgment-text" id="judgmentText"></div>
+      <div class="verdict-actions">
+        <button class="btn btn-gold" id="btnNextRound">Next Round →</button>
+        <button class="btn btn-outline" id="btnEndMatch">End Match</button>
+      </div>
+    </div>
+    <div class="tx-log">
+      <div class="tx-log-title">On-Chain Activity</div>
+      <div id="txEntriesVerdict"></div>
+    </div>
+  </div>
+
+  <!-- SCREEN: OVER -->
+  <div id="screenOver" class="screen animate-in">
+    <div class="match-over">
+      <div class="winner-trophy" id="overTrophy">🏆</div>
+      <div class="winner-title">Match Complete</div>
+      <div class="winner-name" id="overWinner">—</div>
+      <div class="match-over-scores">
+        <div class="over-score-player">
+          <div class="over-score-name" id="overNameA">Player A</div>
+          <div class="over-score-num" id="overScoreA">0</div>
+        </div>
+        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--dark-border);">—</div>
+        <div class="over-score-player">
+          <div class="over-score-name" id="overNameB">Player B</div>
+          <div class="over-score-num" id="overScoreB">0</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:1rem;justify-content:center;margin-top:1.5rem;">
+        <button class="btn btn-gold" id="btnNewMatch">New Match →</button>
+        <a href="/" class="btn btn-outline">← Home</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /game-container -->
+
+<div class="toast" id="toast"></div>
+
+<script type="module">
+// ── CONFIG ──────────────────────────────────────────────────────────────
+const CONFIG = {
+  GAME_CONTRACT:    '0xce04C5f27Cb1DBfF46044f8Fd871A9F9e5418e4d',
+  STORAGE_CONTRACT: '0xebe33979c7ac0C5131f6F9f1E15540B009ECb01F',
+  STAT_CONTRACT:    '0xfc9A7445868B0Af0a80f80C352C0EbAf77193fAF',
+  RPC_URL: 'https://studio.genlayer.com/api',
 };
 
-const ARG_TIMER = 90; // seconds per player
+const ARG_TIMER = 90;
 
-// ── STATE ──
+// ── STATE ───────────────────────────────────────────────────────────────
+let walletAddress = null;
 let state = {
-  matchId: '',
-  playerA: '',
-  playerB: '',
-  topic: '',
-  sideA: '',
-  sideB: '',
-  scoreA: 0,
-  scoreB: 0,
-  currentRound: 1,
-  argA: '',
-  argB: '',
+  matchId: '', playerA: '', playerB: '',
+  topic: '', sideA: '', sideB: '',
+  scoreA: 0, scoreB: 0, currentRound: 1,
+  argA: '', argB: '',
   timerInterval: null,
 };
 
-// ── RPC ──
-function getRpc() {
-  return document.getElementById('rpcUrl').value.trim() || 'https://studio.genlayer.com/api';
-}
-
-async function rpcCall(method, params = []) {
-  const res = await fetch(getRpc(), {
+// ── GENLAYER CLIENT (same pattern as CountryClash) ───────────────────────
+async function glRead(contractAddress, method, args = []) {
+  const res = await fetch(CONFIG.RPC_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, params }),
+    body: JSON.stringify({
+      jsonrpc: '2.0', id: 1, method: 'eth_call',
+      params: [{ to: contractAddress, data: encodeCall(method, args) }, 'latest']
+    })
   });
-  const data = await res.json();
-  if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
-  return data.result;
+  const json = await res.json();
+  return json.result;
 }
 
-async function sendTx(contractAddr, method, args) {
-  const payload = {
-    to: contractAddr,
-    from: '0x0000000000000000000000000000000000000001',
-    data: { method, args },
-  };
-  return rpcCall('eth_sendTransaction', [payload]);
+async function glWrite(contractAddress, method, args = []) {
+  if (!window.ethereum) throw new Error('No wallet — please install MetaMask');
+  const data = encodeCall(method, args);
+  return window.ethereum.request({
+    method: 'eth_sendTransaction',
+    params: [{ from: walletAddress, to: contractAddress, data, gas: '0x100000' }]
+  });
 }
 
-async function callView(contractAddr, method, args = []) {
-  const payload = {
-    to: contractAddr,
-    data: { method, args },
-  };
-  return rpcCall('eth_call', [payload, 'latest']);
-}
+function encodeCall(method, args) {
+  const types = args.map(a => typeof a === 'number' ? 'uint256' : 'string');
+  const sig = method + '(' + types.join(',') + ')';
+  const selector = simpleKeccak(sig).slice(0, 10);
 
-async function waitForTx(txHash, maxWait = 120000) {
-  const start = Date.now();
-  while (Date.now() - start < maxWait) {
-    try {
-      const receipt = await rpcCall('eth_getTransactionReceipt', [txHash]);
-      if (receipt && receipt.status) return receipt;
-    } catch (_) {}
-    await sleep(3000);
+  if (args.length === 0) return selector;
+
+  // encode each arg
+  const parts = [];
+  const headSize = args.length * 32;
+  let dynOffset = headSize;
+  const heads = [];
+  const tails = [];
+
+  for (let i = 0; i < args.length; i++) {
+    const a = args[i];
+    if (typeof a === 'number') {
+      heads.push(a.toString(16).padStart(64, '0'));
+    } else {
+      heads.push(dynOffset.toString(16).padStart(64, '0'));
+      const enc = encodeString(a);
+      tails.push(enc);
+      dynOffset += enc.length / 2;
+    }
   }
-  throw new Error('Transaction timed out');
+
+  return selector + heads.join('') + tails.join('');
 }
 
-function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+function encodeString(s) {
+  const bytes = Array.from(new TextEncoder().encode(s));
+  const len = bytes.length.toString(16).padStart(64, '0');
+  const hex = bytes.map(b => b.toString(16).padStart(2, '0')).join('');
+  const padded = hex.padEnd(Math.ceil(hex.length / 64) * 64, '0');
+  return len + padded;
+}
 
-// ── UI HELPERS ──
+function simpleKeccak(str) {
+  // Use ethers if available
+  if (window.ethers?.utils?.id) return window.ethers.utils.id(str);
+  // Fallback: compute manually — for GenLayer the selector matching is by method name string
+  // GenLayer studio accepts plain method name in data field as well
+  const hex = Array.from(new TextEncoder().encode(str)).map(b => b.toString(16).padStart(2,'0')).join('');
+  return '0x' + hex.slice(0, 8).padEnd(8, '0');
+}
+
+function decodeABIString(hex) {
+  if (!hex || hex === '0x') return null;
+  try {
+    const clean = hex.startsWith('0x') ? hex.slice(2) : hex;
+    const lenHex = clean.slice(64, 128);
+    const len = parseInt(lenHex, 16) * 2;
+    const strHex = clean.slice(128, 128 + len);
+    const bytes = [];
+    for (let i = 0; i < strHex.length; i += 2) bytes.push(parseInt(strHex.slice(i, i+2), 16));
+    return new TextDecoder().decode(new Uint8Array(bytes));
+  } catch { return null; }
+}
+
+// ── UI HELPERS ───────────────────────────────────────────────────────────
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  const el = document.getElementById(id);
-  el.classList.add('active');
-  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function setStatus(msg, type = '') {
+  const el = document.getElementById('status');
+  if (!el) return;
+  el.textContent = msg;
+  el.className = type;
 }
 
 function showToast(msg, isError = false) {
@@ -1094,61 +656,49 @@ function showToast(msg, isError = false) {
   setTimeout(() => t.className = 'toast', 3500);
 }
 
-function addTxLog(msg, isError = false, targetId = 'txEntries') {
-  const el = document.getElementById(targetId);
+function addTxLog(msg, isError = false) {
+  const el = document.getElementById('txEntries');
   if (!el) return;
-  const entry = document.createElement('div');
-  entry.className = 'tx-entry' + (isError ? ' error' : '');
-  entry.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
-  el.appendChild(entry);
   document.getElementById('txLog').style.display = 'block';
+  const e = document.createElement('div');
+  e.className = 'tx-entry' + (isError ? ' error' : '');
+  e.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+  el.appendChild(e);
 }
 
 function genMatchId() {
-  return 'match_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
+  return 'dd_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6);
 }
 
-// ── TIMER ──
-function startTimer(elementId, seconds, onExpire) {
-  clearInterval(state.timerInterval);
-  let remaining = seconds;
-  const el = document.getElementById(elementId);
-  if (!el) return;
-  el.textContent = remaining;
-  el.classList.remove('urgent');
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-  state.timerInterval = setInterval(() => {
-    remaining--;
-    el.textContent = remaining;
-    if (remaining <= 15) el.classList.add('urgent');
-    if (remaining <= 0) {
-      clearInterval(state.timerInterval);
-      if (onExpire) onExpire();
-    }
-  }, 1000);
-}
-
-function stopTimer() { clearInterval(state.timerInterval); }
-
-// ── CHAR COUNT ──
-document.getElementById('argA').addEventListener('input', function() {
-  document.getElementById('charA').textContent = this.value.length;
-});
-document.getElementById('argB').addEventListener('input', function() {
-  document.getElementById('charB').textContent = this.value.length;
+// ── WALLET ───────────────────────────────────────────────────────────────
+document.getElementById('connectBtn').addEventListener('click', async () => {
+  if (!window.ethereum) {
+    setStatus('MetaMask not found. Please install it.', 'error');
+    return;
+  }
+  try {
+    setStatus('Connecting…', 'loading');
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    walletAddress = accounts[0];
+    document.getElementById('walletBadge').textContent =
+      walletAddress.slice(0, 6) + '…' + walletAddress.slice(-4);
+    showScreen('screenSetup');
+    loadLeaderboard();
+  } catch (e) {
+    setStatus('Connection refused.', 'error');
+  }
 });
 
-// ── START MATCH ──
+// ── START MATCH ──────────────────────────────────────────────────────────
 document.getElementById('btnStartMatch').addEventListener('click', async () => {
   const playerA = document.getElementById('playerAName').value.trim();
   const playerB = document.getElementById('playerBName').value.trim();
+  const nickname = document.getElementById('nicknameInput').value.trim();
 
-  if (!playerA || !playerB) {
-    showToast('Enter both player names first.', true); return;
-  }
-  if (playerA === playerB) {
-    showToast('Players must have different names.', true); return;
-  }
+  if (!playerA || !playerB) { showToast('Enter both player names.', true); return; }
+  if (playerA === playerB) { showToast('Players must have different names.', true); return; }
 
   state.playerA = playerA;
   state.playerB = playerB;
@@ -1158,41 +708,62 @@ document.getElementById('btnStartMatch').addEventListener('click', async () => {
   state.currentRound = 1;
 
   showScreen('screenCreating');
-  addTxLog(`Creating match ${state.matchId}…`);
+  addTxLog('Creating match ' + state.matchId + '…');
 
   try {
+    // Set nickname if provided
+    if (nickname) {
+      await glWrite(CONFIG.STAT_CONTRACT, 'set_nickname', [nickname]);
+    }
+
+    // Create match on-chain
     const createdAt = String(Date.now());
-    const txHash = await sendTx(CONTRACTS.game, 'create_match', [
+    await glWrite(CONFIG.GAME_CONTRACT, 'create_match', [
       playerA, playerB, state.matchId, createdAt
     ]);
-    addTxLog(`TX submitted: ${txHash}`);
-    await waitForTx(txHash);
-    addTxLog(`Match created on-chain ✓`);
+    addTxLog('TX submitted — waiting for GenLayer consensus…');
 
-    // Fetch match data
-    const match = await callView(CONTRACTS.storage, 'get_match', [state.matchId]);
+    // Wait for GenLayer validators to process the LLM call
+    await sleep(15000);
+
+    // Fetch match data from storage
+    let match = null;
+    for (let attempt = 0; attempt < 6; attempt++) {
+      try {
+        const raw = await glRead(CONFIG.STORAGE_CONTRACT, 'get_match', [state.matchId]);
+        const decoded = decodeABIString(raw);
+        if (decoded) {
+          const parsed = JSON.parse(decoded);
+          if (parsed && parsed.topic) { match = parsed; break; }
+        }
+      } catch (_) {}
+      await sleep(5000);
+    }
+
     if (match && match.topic) {
       state.topic = match.topic;
       state.sideA = match.side_a_position;
       state.sideB = match.side_b_position;
+      addTxLog('Topic generated ✓ — starting match');
     } else {
-      // fallback
+      // Fallback if polling times out
       state.topic = 'Artificial intelligence will do more good than harm for society';
-      state.sideA = 'FOR: AI will vastly improve human quality of life';
-      state.sideB = 'AGAINST: AI poses serious risks that outweigh its benefits';
+      state.sideA = 'FOR: AI will vastly improve human quality of life and solve major problems';
+      state.sideB = 'AGAINST: AI poses serious societal risks that outweigh its potential benefits';
+      addTxLog('Using fallback topic (storage polling timed out)');
     }
 
     loadRound();
     showScreen('screenMatch');
 
   } catch (err) {
-    addTxLog(`Error: ${err.message}`, true);
-    showToast('Failed to create match. Check RPC.', true);
+    addTxLog('Error: ' + err.message, true);
+    showToast('Failed: ' + err.message, true);
     showScreen('screenSetup');
   }
 });
 
-// ── LOAD ROUND ──
+// ── LOAD ROUND ───────────────────────────────────────────────────────────
 function loadRound() {
   document.getElementById('roundBadge').textContent = `Round ${state.currentRound} of 3`;
   document.getElementById('topicDisplay').textContent = `"${state.topic}"`;
@@ -1200,11 +771,8 @@ function loadRound() {
   document.getElementById('scoreNameB').textContent = state.playerB;
   document.getElementById('scoreNumA').textContent = state.scoreA;
   document.getElementById('scoreNumB').textContent = state.scoreB;
-
   document.getElementById('phaseAName').textContent = state.playerA;
   document.getElementById('phaseBName').textContent = state.playerB;
-  document.getElementById('phaseASide').textContent = 'FOR the proposition';
-  document.getElementById('phaseBSide').textContent = 'AGAINST the proposition';
   document.getElementById('positionA').textContent = state.sideA;
   document.getElementById('positionB').textContent = state.sideB;
 
@@ -1217,19 +785,40 @@ function loadRound() {
   document.getElementById('charB').textContent = '0';
   document.getElementById('btnSubmitA').disabled = false;
   document.getElementById('btnSubmitB').disabled = false;
-
-  state.argA = '';
-  state.argB = '';
+  state.argA = ''; state.argB = '';
 
   startTimer('timerA', ARG_TIMER, () => {
-    if (!state.argA) {
-      state.argA = document.getElementById('argA').value.trim() || '[No argument submitted]';
-      showPhaseB();
-    }
+    state.argA = document.getElementById('argA').value.trim() || '[No argument submitted]';
+    showPhaseB();
   });
 }
 
-// ── SUBMIT A ──
+// ── TIMER ────────────────────────────────────────────────────────────────
+function startTimer(elementId, seconds, onExpire) {
+  clearInterval(state.timerInterval);
+  let remaining = seconds;
+  const el = document.getElementById(elementId);
+  el.textContent = remaining;
+  el.classList.remove('urgent');
+  state.timerInterval = setInterval(() => {
+    remaining--;
+    el.textContent = remaining;
+    if (remaining <= 15) el.classList.add('urgent');
+    if (remaining <= 0) { clearInterval(state.timerInterval); if (onExpire) onExpire(); }
+  }, 1000);
+}
+
+function stopTimer() { clearInterval(state.timerInterval); }
+
+// ── CHAR COUNT ───────────────────────────────────────────────────────────
+document.getElementById('argA').addEventListener('input', function() {
+  document.getElementById('charA').textContent = this.value.length;
+});
+document.getElementById('argB').addEventListener('input', function() {
+  document.getElementById('charB').textContent = this.value.length;
+});
+
+// ── SUBMIT A ─────────────────────────────────────────────────────────────
 document.getElementById('btnSubmitA').addEventListener('click', () => {
   const arg = document.getElementById('argA').value.trim();
   if (arg.length < 10) { showToast('Write at least a sentence.', true); return; }
@@ -1242,20 +831,17 @@ document.getElementById('btnSubmitA').addEventListener('click', () => {
 function showPhaseB() {
   document.getElementById('phaseA').style.display = 'none';
   document.getElementById('waitingB').style.display = 'block';
-
   setTimeout(() => {
     document.getElementById('waitingB').style.display = 'none';
     document.getElementById('phaseB').style.display = 'block';
     startTimer('timerB', ARG_TIMER, () => {
-      if (!state.argB) {
-        state.argB = document.getElementById('argB').value.trim() || '[No argument submitted]';
-        submitRound();
-      }
+      state.argB = document.getElementById('argB').value.trim() || '[No argument submitted]';
+      submitRound();
     });
-  }, 2000);
+  }, 2500);
 }
 
-// ── SUBMIT B ──
+// ── SUBMIT B ─────────────────────────────────────────────────────────────
 document.getElementById('btnSubmitB').addEventListener('click', () => {
   const arg = document.getElementById('argB').value.trim();
   if (arg.length < 10) { showToast('Write at least a sentence.', true); return; }
@@ -1265,40 +851,56 @@ document.getElementById('btnSubmitB').addEventListener('click', () => {
   submitRound();
 });
 
-// ── SUBMIT ROUND ──
+// ── SUBMIT ROUND ─────────────────────────────────────────────────────────
 async function submitRound() {
   showScreen('screenJudging');
+  addTxLog('Submitting Round ' + state.currentRound + ' to AI judge…');
 
   try {
-    const txHash = await sendTx(CONTRACTS.game, 'submit_arguments', [
+    await glWrite(CONFIG.GAME_CONTRACT, 'submit_arguments', [
       state.matchId,
       String(state.currentRound),
       state.argA,
-      state.argB
+      state.argB,
     ]);
+    addTxLog('TX submitted — waiting for judgment…');
 
-    await waitForTx(txHash);
+    // Wait for GenLayer LLM consensus
+    await sleep(15000);
 
-    const roundData = await callView(CONTRACTS.storage, 'get_round', [
-      state.matchId, String(state.currentRound)
-    ]);
+    // Poll storage for round result
+    let roundData = null;
+    for (let attempt = 0; attempt < 8; attempt++) {
+      try {
+        const raw = await glRead(CONFIG.STORAGE_CONTRACT, 'get_round', [
+          state.matchId, String(state.currentRound)
+        ]);
+        const decoded = decodeABIString(raw);
+        if (decoded) {
+          const parsed = JSON.parse(decoded);
+          if (parsed && parsed.round_winner !== undefined) { roundData = parsed; break; }
+        }
+      } catch (_) {}
+      await sleep(5000);
+    }
 
-    if (roundData && roundData.round_winner !== undefined) {
+    if (roundData) {
+      addTxLog('Verdict received ✓');
       displayVerdict(roundData);
     } else {
-      throw new Error('Could not fetch round result');
+      throw new Error('Could not fetch round result after waiting');
     }
 
   } catch (err) {
-    showToast('Error submitting round: ' + err.message, true);
+    addTxLog('Error: ' + err.message, true);
+    showToast('Error: ' + err.message, true);
     showScreen('screenMatch');
   }
 }
 
-// ── DISPLAY VERDICT ──
+// ── DISPLAY VERDICT ───────────────────────────────────────────────────────
 function displayVerdict(round) {
   const winner = round.round_winner;
-
   if (winner === 'a') state.scoreA++;
   else if (winner === 'b') state.scoreB++;
 
@@ -1307,37 +909,24 @@ function displayVerdict(round) {
   document.getElementById('verdictNameA').textContent = state.playerA;
   document.getElementById('verdictNameB').textContent = state.playerB;
 
-  // Winner badge
   const badge = document.getElementById('verdictWinnerBadge');
-  if (winner === 'a') {
-    badge.textContent = `${state.playerA} wins this round`;
-    badge.className = 'verdict-winner-badge win-a';
-  } else if (winner === 'b') {
-    badge.textContent = `${state.playerB} wins this round`;
-    badge.className = 'verdict-winner-badge win-b';
-  } else {
-    badge.textContent = 'Draw';
-    badge.className = 'verdict-winner-badge draw';
-  }
+  if (winner === 'a') { badge.textContent = state.playerA + ' wins this round'; badge.className = 'verdict-winner-badge win-a'; }
+  else if (winner === 'b') { badge.textContent = state.playerB + ' wins this round'; badge.className = 'verdict-winner-badge win-b'; }
+  else { badge.textContent = 'Draw'; badge.className = 'verdict-winner-badge draw'; }
 
-  // Scores
-  const la = parseInt(round.logic_a) || 0;
-  const ea = parseInt(round.evidence_a) || 0;
-  const pa = parseInt(round.persuasion_a) || 0;
-  const ta = parseInt(round.total_a) || (la + ea + pa);
-  const lb = parseInt(round.logic_b) || 0;
-  const eb = parseInt(round.evidence_b) || 0;
-  const pb = parseInt(round.persuasion_b) || 0;
-  const tb = parseInt(round.total_b) || (lb + eb + pb);
+  const la = parseInt(round.logic_a) || 0, ea = parseInt(round.evidence_a) || 0, pa = parseInt(round.persuasion_a) || 0;
+  const ta = parseInt(round.total_a) || (la+ea+pa);
+  const lb = parseInt(round.logic_b) || 0, eb = parseInt(round.evidence_b) || 0, pb = parseInt(round.persuasion_b) || 0;
+  const tb = parseInt(round.total_b) || (lb+eb+pb);
 
   setTimeout(() => {
-    document.getElementById('barLogicA').style.width = (la / 10 * 100) + '%';
-    document.getElementById('barEvidA').style.width = (ea / 10 * 100) + '%';
-    document.getElementById('barPersA').style.width = (pa / 10 * 100) + '%';
-    document.getElementById('barLogicB').style.width = (lb / 10 * 100) + '%';
-    document.getElementById('barEvidB').style.width = (eb / 10 * 100) + '%';
-    document.getElementById('barPersB').style.width = (pb / 10 * 100) + '%';
-  }, 100);
+    document.getElementById('barLogicA').style.width = (la/10*100)+'%';
+    document.getElementById('barEvidA').style.width = (ea/10*100)+'%';
+    document.getElementById('barPersA').style.width = (pa/10*100)+'%';
+    document.getElementById('barLogicB').style.width = (lb/10*100)+'%';
+    document.getElementById('barEvidB').style.width = (eb/10*100)+'%';
+    document.getElementById('barPersB').style.width = (pb/10*100)+'%';
+  }, 200);
 
   document.getElementById('valLogicA').textContent = la;
   document.getElementById('valEvidA').textContent = ea;
@@ -1348,107 +937,92 @@ function displayVerdict(round) {
   document.getElementById('valPersB').textContent = pb;
   document.getElementById('totalB').innerHTML = `${tb}<small>/ 30</small>`;
 
-  document.getElementById('judgmentText').textContent = round.judgment || 'No judgment available.';
+  document.getElementById('judgmentText').textContent = round.judgment || 'No judgment text available.';
 
-  // On-chain log
-  const logEl = document.getElementById('txEntriesVerdict');
-  logEl.innerHTML = '';
-  const entry = document.createElement('div');
-  entry.className = 'tx-entry';
-  entry.textContent = `Round ${state.currentRound} verdict written to GenLayer — match ${state.matchId}`;
-  logEl.appendChild(entry);
+  const txLog = document.getElementById('txEntriesVerdict');
+  txLog.innerHTML = `<div class="tx-entry">Round ${state.currentRound} verdict written on-chain · Match ${state.matchId}</div>`;
 
-  // Check if match is over
   const isOver = state.scoreA === 2 || state.scoreB === 2 || state.currentRound >= 3;
   document.getElementById('btnNextRound').style.display = isOver ? 'none' : 'inline-block';
-  document.getElementById('btnEndMatch').textContent = isOver ? 'See Final Result →' : 'End Match';
   if (isOver) {
+    document.getElementById('btnEndMatch').textContent = 'See Final Result →';
+    document.getElementById('btnEndMatch').onclick = showMatchOver;
+  } else {
+    document.getElementById('btnEndMatch').textContent = 'End Match';
     document.getElementById('btnEndMatch').onclick = showMatchOver;
   }
 
   showScreen('screenVerdict');
 }
 
-// ── NEXT ROUND ──
+// ── NEXT ROUND ────────────────────────────────────────────────────────────
 document.getElementById('btnNextRound').addEventListener('click', () => {
   state.currentRound++;
   loadRound();
   showScreen('screenMatch');
 });
 
-document.getElementById('btnEndMatch').addEventListener('click', () => {
-  showMatchOver();
-});
-
-// ── MATCH OVER ──
+// ── MATCH OVER ────────────────────────────────────────────────────────────
 function showMatchOver() {
   let winnerName, trophy;
-  if (state.scoreA > state.scoreB) {
-    winnerName = state.playerA + ' wins!';
-    trophy = '🏆';
-  } else if (state.scoreB > state.scoreA) {
-    winnerName = state.playerB + ' wins!';
-    trophy = '🏆';
-  } else {
-    winnerName = 'A draw — honour to both!';
-    trophy = '🤝';
-  }
+  if (state.scoreA > state.scoreB) { winnerName = state.playerA + ' wins!'; trophy = '🏆'; }
+  else if (state.scoreB > state.scoreA) { winnerName = state.playerB + ' wins!'; trophy = '🏆'; }
+  else { winnerName = 'A draw — honour to both!'; trophy = '🤝'; }
 
   document.getElementById('overTrophy').textContent = trophy;
-  document.getElementById('overTitle').textContent = 'Match Complete';
   document.getElementById('overWinner').textContent = winnerName;
   document.getElementById('overNameA').textContent = state.playerA;
   document.getElementById('overNameB').textContent = state.playerB;
   document.getElementById('overScoreA').textContent = state.scoreA;
   document.getElementById('overScoreB').textContent = state.scoreB;
 
-  if (state.scoreA > state.scoreB) {
-    document.getElementById('overScoreA').classList.add('winner-highlight');
-    document.getElementById('overScoreB').classList.remove('winner-highlight');
-  } else if (state.scoreB > state.scoreA) {
-    document.getElementById('overScoreB').classList.add('winner-highlight');
-    document.getElementById('overScoreA').classList.remove('winner-highlight');
-  }
+  document.getElementById('overScoreA').className = 'over-score-num' + (state.scoreA > state.scoreB ? ' winner-highlight' : '');
+  document.getElementById('overScoreB').className = 'over-score-num' + (state.scoreB > state.scoreA ? ' winner-highlight' : '');
 
   showScreen('screenOver');
 }
 
-// ── NEW MATCH ──
 document.getElementById('btnNewMatch').addEventListener('click', () => {
   document.getElementById('playerAName').value = '';
   document.getElementById('playerBName').value = '';
   showScreen('screenSetup');
+  loadLeaderboard();
 });
 
-// ── LEADERBOARD ──
-document.getElementById('btnLeaderboard').addEventListener('click', async () => {
+// ── LEADERBOARD ───────────────────────────────────────────────────────────
+document.getElementById('btnLeaderboard').addEventListener('click', () => {
   const section = document.getElementById('leaderboardSection');
-  if (section.style.display !== 'none') { section.style.display = 'none'; return; }
-  section.style.display = 'block';
-  const rows = document.getElementById('leaderboardRows');
-  rows.innerHTML = '<div class="lb-row" style="color: var(--muted);">Loading…</div>';
+  section.style.display = section.style.display === 'none' ? 'block' : 'none';
+  if (section.style.display === 'block') loadLeaderboard();
+});
 
+async function loadLeaderboard() {
+  const rows = document.getElementById('leaderboardRows');
+  if (!rows) return;
+  rows.innerHTML = '<div class="lb-row" style="color:var(--muted)">Loading…</div>';
   try {
-    const data = await callView(CONTRACTS.stat, 'get_leaderboard', [20]);
-    const list = typeof data === 'string' ? JSON.parse(data) : data;
+    const raw = await glRead(CONFIG.STAT_CONTRACT, 'get_leaderboard', [20]);
+    const decoded = decodeABIString(raw);
+    const list = decoded ? JSON.parse(decoded) : null;
     if (!list || !list.length) {
-      rows.innerHTML = '<div class="lb-row" style="color: var(--muted);">No matches recorded yet.</div>';
+      rows.innerHTML = '<div class="lb-row" style="color:var(--muted)">No matches yet.</div>';
       return;
     }
     rows.innerHTML = list.map((p, i) => `
       <div class="lb-row">
-        <span class="lb-rank">${i + 1}</span>
-        <span class="lb-name">${p.nickname || p.wallet?.slice(0, 10) + '…' || '—'}</span>
+        <span class="lb-rank">${i+1}</span>
+        <span class="lb-name">${p.nickname || (p.wallet ? p.wallet.slice(0,10)+'…' : '—')}</span>
         <span class="lb-val wins">${p.matches_won}</span>
         <span class="lb-val">${p.matches_played}</span>
         <span class="lb-val">${p.win_rate}%</span>
-        <span class="lb-val">${p.best_streak}</span>
       </div>
     `).join('');
-  } catch (err) {
-    rows.innerHTML = `<div class="lb-row" style="color: var(--red);">Error: ${err.message}</div>`;
+  } catch (e) {
+    rows.innerHTML = `<div class="lb-row" style="color:var(--red)">Error: ${e.message}</div>`;
   }
-});
+}
+
+loadLeaderboard();
 </script>
 </body>
 </html>
